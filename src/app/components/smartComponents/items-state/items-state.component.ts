@@ -38,7 +38,6 @@ export class ItemsStateComponent implements OnInit {
   }
 
   searchItem(itemName){
-    debugger;
     if(itemName === "" || itemName === undefined){
       this.isItemExist =true;
       this.items = [...this.frozenObject];

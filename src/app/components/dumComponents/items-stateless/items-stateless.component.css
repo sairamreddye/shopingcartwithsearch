@@ -521,3 +521,8 @@ border-radius: 0 !important;
 .brandname{
    text-transform: capitalize;
 }
+
+.top-adjust {
+   position: relative;
+   top: 135px;
+}
