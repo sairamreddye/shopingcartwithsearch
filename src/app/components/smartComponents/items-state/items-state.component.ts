@@ -44,6 +44,7 @@ export class ItemsStateComponent implements OnInit {
       this.items = [...this.frozenObject];
     }
     else if(itemName != ''){
+      this.items = [...this.frozenObject];
           this.marvelHeroes = this.items.filter((hero) => {
             return hero.Brandname == itemName;
           });
