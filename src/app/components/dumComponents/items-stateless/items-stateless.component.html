@@ -1,0 +1,110 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse custom-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto col-md-4">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="shopingitems">LOGO <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <form class="form form-inline mt-2 mt-md-0 col-md-5">
+        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        <div>
+          <div class="input-group">
+            <input type="text" [(ngModel)]='itemName' id="input1" name="input1" class="form-control control-custom" placeholder="search here ..." aria-label="Recipient's username">
+            <div class="input-group-append">
+                <button type='submit' class="button-custom" (click)='onSubmit()'>
+                    <span class="input-group-text">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </button>
+            </div>
+            </div>
+            <!-- <span class="text-danger" *ngIf="(registerFormControl.search.touched || submitted) && registerFormControl.search.errors?.required">
+                Name is required </span> -->
+          </div>
+      </form>
+      
+  <ul class="col-md-2">
+    <li class="carting">
+      <div id="cart" class="d-none">
+
+      </div>
+      <a href="#" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+        <i class="fas fa fa-shopping-cart fa-lg"></i>
+        <span class="cart-basket d-flex align-items-center justify-content-center">
+          {{totalQuantities()}}
+        </span>
+      </a>
+    </li>
+  </ul>
+    </div>
+  </nav>
+</header>
+
+<div id="wrapper">
+  <ng-container *ngIf="dataValidation; else nodataContains">
+    <section id="main">
+      <div class="container"  *ngFor="let item of items">
+        <div class="product-block">
+          <div class="pro-Img">
+            <img src="{{item.ImageURL}}" alt="Images" />
+            <p>{{item.OfferText}}</p>
+          </div>
+          <div class="pro-cnt">
+            <ul>
+              <li class="brandname">{{item.Brandname}}</li>
+              <li>{{item.Brandexplanation}}</li>
+              <li>{{item.Quantity}}</li>
+              <li>MRP: {{item.MRP}}</li>
+              <li>RS: {{item.RS}}</li>
+            </ul>
+            <div class="pro-crt">
+              <ul>
+                <li><a (click)='increase(item.id)'>Add Cart </a></li>
+                <li><a (click)='increase(item.id)'><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </span></a></li>
+                <li><span>{{item.counter}}</span></li>
+                <li><a (click)='decrease(item.id)'><span><i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+      </div>
+    </section>
+  </ng-container>
+    <!-- /main -->
+
+    <footer id="footer">
+      <div class="container">
+        <div class="footer">
+          <ul>
+            <li>Qty {{totalCost()}}</li>
+            <li>Total {{totalQuantities()}} </li>
+          </ul>
+          <a (click)='alertShow()'>CheckOut</a>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- /footer -->
+  </div>
+  <!-- /container -->
+
+
+
+  <ng-template #nodataContains>
+           <div class="card card-custom">
+             <div class="card-body card-body-custom">
+               {{error}}
+             </div>
+           </div>
+</ng-template>
+
+
+
